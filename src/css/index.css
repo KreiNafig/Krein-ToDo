@@ -30,22 +30,80 @@ a:hover{text-decoration: none;}
 ul li{list-style-type: none;}
 img{vertical-align: top;}
 h1,h2, h3, h4, h5, h6{font-style: inherit; font-weight: 400;}
-
+@font-face {
+    font-family: "Minecraft";
+    src: url('../fonts/Minecraft_1.1.ttf');
+}
+@font-face {
+    font-family: "Inter";
+    src: url('../fonts/Inter-VariableFont_opsz\,wght.ttf');
+}
 body {
     background: #77C3FD;
     background: linear-gradient(90deg, rgba(119, 195, 253, 1) 0%, rgba(109, 124, 253, 1) 50%, rgba(179, 170, 252, 1) 100%);
 }
-.taskLi {
-    display: flex;
-    border-radius: 20px;
-    width: 1000px;
-    margin-top: 80px;
-    background-color: white;
-    color: rgb(31, 29, 29);
-    justify-content: space-around;
-    min-height: 7vh;
-    word-wrap: break-word;
+header {
+    font-family: "Minecraft";
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-top: 20px;
 }
+.toDoForm {
+    display: flex;
+    flex-direction: column;
+}
+.toDoForm > label {
+    text-align: center;
+}
+.toDoForm > label > h2 {
+    font-size: 32px;
+    font-family: "Inter";
+}
+.toDoForm > input {
+    margin: 0 auto;
+    width: 500px;
+    margin-top: 30px;
+    height: 40px;
+    font-size: 28px;
+    border-radius: 8px;
+    border: 2px solid rgb(37, 37, 37);
+}
+.toDoForm > button {
+    margin: 0 auto;
+    margin-top: 30px;
+    height: 45px;
+    width: 350px;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: 500;
+    border: 2px solid rgb(37, 37, 37);
+}
+.taskLi {
+    margin: 0 auto;
+    background-color: white;
+    width: 75vw;
+    margin-bottom: 35px;
+    height: 10vh;
+    border-radius: 10px;
+    border: 2px solid rgb(37, 37, 37);
+    padding-top: 5px;
+    padding-left: 5px;
+}
+.taskLi:first-child {
+    margin-top: 45px;
+}
+
+
+
+
+
+
+
+
+
+
+
 .content {
     width: 80%;
     display: flex;
@@ -64,15 +122,39 @@ body {
     margin-right: 100px;
 }
 
-header {
-    max-width: 1900px;
-    text-align: center;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
+
 main {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+
+
+
+
+
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 768px) {
+    .toDoForm > input {
+        margin: 0 auto;
+        width: 431px;
+        margin-top: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        font-size: 18px;
+    }
+    .toDoForm > input {
+        width: 70vw;
+        margin-top: 20px;
+    }
+    .toDoForm > button {
+        width: 50vw;
+    }
 }
