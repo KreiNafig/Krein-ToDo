@@ -1,23 +1,29 @@
+import { removeTask, doneTask } from './modules/actions.js'
+import { listOfTasks } from './modules/render.js'
+
 const formElement = window.document.querySelector('#task')
 let arrayTasks = []
 
 formElement.addEventListener('submit', (e) => {
     e.preventDefault()
-
     const inputElement = window.document.querySelector('input[name="task"]')
-
-    if (!inputElement || !inputElement.value.trim()) return
-
+    const inputValue = inputElement.value
+    const inputErrorMessage = inputElement.parentElement.children
+    if (!inputValue || !inputValue.trim()) return
+    if (inputValue.length >= 3) {
+        inputErrorMessage.namedItem('length').style.display = 'none';
+    } else {
+        inputErrorMessage.namedItem('length').style.display = 'block';
+        return
+    }
     const objTask = {
         id: crypto.randomUUID(),
         text: inputElement.value.trim(),
         done: false,
     }
-
     arrayTasks.push(objTask)
-
+    listOfTasks(arrayTasks)
     inputElement.value = ''
-
     renderTasks(arrayTasks)
 })
 
@@ -38,13 +44,15 @@ function renderTasks(arr) {
 
         const buttonRemove = window.document.createElement('button');
         buttonRemove.textContent = 'Удалить';
-        buttonRemove.addEventListener('click', () => removeTask(task.id))
+        buttonRemove.addEventListener('click', () => {
+            arrayTasks = removeTask(task.id, arrayTasks)
+        })
 
         const buttonDone = window.document.createElement('button')
         buttonDone.textContent = 'Завершить'
         buttonDone.classList.add('cancel')
         buttonDone.addEventListener('click', () => {
-            doneTask(task.done, task.id)
+            arrayTasks.done = doneTask(task.done, task.id, arrayTasks)
         })
 
         contentDiv.append(textP, buttonRemove, buttonDone)
@@ -53,27 +61,4 @@ function renderTasks(arr) {
         taskList.append(li)
         }
     }))
-}
-
-function doneTask(done, id) {
-    const taskComplete = arrayTasks.find(elem => elem.id === id)
-    const task = window.document.getElementById(id)
-    if (!task || !taskComplete) return
-    const taskButton = task.querySelector('.content .cancel')
-    if (done) {
-        taskComplete.done = false;
-        taskButton.textContent = 'Завершить'
-        task.classList.replace('taskComplete', 'taskLi')
-        
-    } else if (taskComplete) {
-        taskComplete.done = true;
-        taskButton.textContent = 'Отмена'
-        task.classList.replace('taskLi', 'taskComplete')
-        
-    }
-}
-
-function removeTask(taskId) {
-    arrayTasks = arrayTasks.filter(elem => elem.id !== taskId)
-    document.getElementById(`${taskId}`)?.remove()
 }

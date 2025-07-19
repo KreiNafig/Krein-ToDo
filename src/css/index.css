@@ -170,8 +170,20 @@ header {
 .taskComplete > .content > .cancel {
     top: 7vh;
 }
-
-
+.error {
+    text-align: center;
+    color: #dd2525 ;
+    font-weight: 600;
+    margin: 0 auto;
+    font-size: 20px;
+    margin-top: 15px;
+    text-shadow:
+    1px 1px 0 black,
+    -1px 1px 0 black,
+    1px -1px 0 black,
+    -1px -1px 0 black;
+    display: none;
+}
 @media (max-width: 1200px) {
     .taskLi > .content > .textTask {
         width: 59vw
@@ -180,6 +192,9 @@ header {
         padding: 0 3px;
         width: 13vw;
         font-size: 1.7vw;
+    }
+    .taskLi > .content > button:last-child {
+        top: 6vh;
     }
     .taskLi > .content > .cancel {
         top: 40px;
@@ -194,6 +209,9 @@ header {
     }
     .taskComplete > .content > .cancel {
         top: 40px;
+    }
+    .taskComplete > .content > button:last-child {
+        top: 6vh;
     }
 }
 
@@ -214,6 +232,9 @@ header {
     .taskLi > .content > .cancel {
         top: 40px;
     }
+    .taskLi > .content > button:last-child {
+        top: 6vh;
+    }
     .taskComplete > .content > .textTask {
         width: 55vw;
     }
@@ -224,6 +245,13 @@ header {
     }
     .taskComplete > .content > .cancel {
         top: 40px;
+    }
+    .taskComplete > .content > button:last-child {
+        top: 6vh;
+    }
+    .error {
+        font-size: 20px;
+        width: 80vw;
     }
 }
 @media (max-width: 480px) {
@@ -245,10 +273,12 @@ header {
         width: 16vw;
         font-size: 3.1vw;
     }
+    .taskLi > .content > button:last-child {
+        top: 6vh;
+    }
     .taskLi > .content > .cancel {
         top: 40px;
     }
-    
     .taskComplete > .content > .textTask {
         width: 52vw;
     }
@@ -260,4 +290,17 @@ header {
     .taskComplete > .content > .cancel {
         top: 40px;
     }
+    .taskComplete > .content > button:last-child {
+        top: 6vh;
+    }
+}
+
+
+#clear {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 600;
+    font-family: "Minecraft";
+
 }

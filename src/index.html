@@ -11,13 +11,15 @@
         <h1>Krein ToDo</h1>
     </header>
     <main>
-    <form id="task" class="toDoForm">
+    <form id="task" class="toDoForm" novalidate>
         <label for="taskLabel"><h2>Введите задачу</h2></label>
         <input id="taskLabel" type="text" name="task"/>
+        <p class="error" name="length">Для добавления задачи, используйте минимум 3 символа</p>
         <button type="submit">Добавить</button>
     </form>
     <ul id="taskList"></ul>
+    <h2 id="clear" name="clear">Пока нет задач</h2>
     </main>
-<script src="./js/index.js"></script>
+<script src="./js/index.js" type="module"></script>
 </body>
 </html>
