@@ -84,58 +84,117 @@ header {
     background-color: white;
     width: 75vw;
     margin-bottom: 35px;
-    height: 10vh;
     border-radius: 10px;
     border: 2px solid rgb(37, 37, 37);
+    padding-bottom: 5px;
     padding-top: 5px;
     padding-left: 5px;
+    min-height: 14vh;
+    height: auto;
 }
 .taskLi:first-child {
     margin-top: 45px;
 }
-
-
-
-
-
-
-
-
-
-
-
-.content {
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.taskLi:last-child {
+    margin-bottom: 45px;
 }
-.content > button {
-    background-color: red;
-    border-radius: 30%;
-    height: 50%;;
-    color: black;
-}
-.content > p {
+.taskLi > .content > .textTask{
+    width: 64vw;
+    line-height: 24px;
+    font-family: "Inter";
     font-size: 20px;
-    min-width: 0;
-    margin-right: 100px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
-
-
-main {
+.taskLi > .content {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    position: relative;
+}
+.taskLi > .content > button {
+    position: absolute;
+    height: 5vh;
+    right: 0;
+    margin-right: 10px;
+    background-color: rgb(255, 0, 0);
+    font-weight: 600;
+    border-radius: 5px;
+    width: 8vw;
+    padding: 0 10px
+}
+.taskLi > .content > .cancel {
+    top: 7vh;
 }
 
-
-
-
-
+.taskComplete {
+    margin: 0 auto;
+    background-color: rgb(78, 250, 26);
+    width: 75vw;
+    margin-bottom: 35px;
+    border-radius: 10px;
+    border: 2px solid rgb(37, 37, 37);
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 5px;
+    min-height: 14vh;
+    height: auto;
+}
+.taskComplete:first-child {
+    margin-top: 45px;
+}
+.taskComplete:last-child {
+    margin-bottom: 45px;
+}
+.taskComplete > .content > .textTask{
+    width: 64vw;
+    line-height: 24px;
+    font-family: "Inter";
+    font-size: 20px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+.taskComplete > .content {
+    display: flex;
+    position: relative;
+}
+.taskComplete > .content > button {
+    position: absolute;
+    height: 5vh;
+    right: 0;
+    margin-right: 10px;
+    background-color: rgb(255, 0, 0);
+    font-weight: 600;
+    border-radius: 5px;
+    width: 8vw;
+    padding: 0 10px
+}
+.taskComplete > .content > .cancel {
+    top: 7vh;
+}
 
 
 @media (max-width: 1200px) {
+    .taskLi > .content > .textTask {
+        width: 59vw
+    }
+    .taskLi > .content > button {
+        padding: 0 3px;
+        width: 13vw;
+        font-size: 1.7vw;
+    }
+    .taskLi > .content > .cancel {
+        top: 40px;
+    }
+    .taskComplete > .content > .textTask {
+        width: 59vw
+    }
+    .taskComplete > .content > button {
+        padding: 0 3px;
+        width: 13vw;
+        font-size: 1.7vw;
+    }
+    .taskComplete > .content > .cancel {
+        top: 40px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -144,8 +203,29 @@ main {
         width: 431px;
         margin-top: 25px;
     }
+    .taskLi > .content > .textTask {
+        width: 55vw;
+    }
+    .taskLi > .content > button {
+        padding: 0 1px;
+        width: 13vw;
+        font-size: 2.4vw;
+    }
+    .taskLi > .content > .cancel {
+        top: 40px;
+    }
+    .taskComplete > .content > .textTask {
+        width: 55vw;
+    }
+    .taskComplete > .content > button {
+        padding: 0 1px;
+        width: 13vw;
+        font-size: 2.4vw;
+    }
+    .taskComplete > .content > .cancel {
+        top: 40px;
+    }
 }
-
 @media (max-width: 480px) {
     header {
         font-size: 18px;
@@ -156,5 +236,28 @@ main {
     }
     .toDoForm > button {
         width: 50vw;
+    }
+    .taskLi > .content > .textTask {
+        width: 52vw;
+    }
+    .taskLi > .content > button {
+        padding: 0;
+        width: 16vw;
+        font-size: 3.1vw;
+    }
+    .taskLi > .content > .cancel {
+        top: 40px;
+    }
+    
+    .taskComplete > .content > .textTask {
+        width: 52vw;
+    }
+    .taskComplete > .content > button {
+        padding: 0;
+        width: 16vw;
+        font-size: 3.1vw;
+    }
+    .taskComplete > .content > .cancel {
+        top: 40px;
     }
 }
