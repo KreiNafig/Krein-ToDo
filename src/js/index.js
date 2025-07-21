@@ -1,9 +1,11 @@
 import { removeTask, doneTask } from './modules/actions.js'
 import { listOfTasks } from './modules/render.js'
+import { saveTasks, loadTasks } from './modules/storage.js'
 
 const formElement = window.document.querySelector('#task')
-let arrayTasks = []
-
+let arrayTasks = loadTasks()
+renderTasks(arrayTasks)
+listOfTasks(arrayTasks)
 formElement.addEventListener('submit', (e) => {
     e.preventDefault()
     const inputElement = window.document.querySelector('input[name="task"]')
@@ -22,6 +24,7 @@ formElement.addEventListener('submit', (e) => {
         done: false,
     }
     arrayTasks.push(objTask)
+    saveTasks(arrayTasks)
     listOfTasks(arrayTasks)
     inputElement.value = ''
     renderTasks(arrayTasks)
@@ -34,10 +37,10 @@ function renderTasks(arr) {
         const taskList = window.document.querySelector('#taskList');
         let li = window.document.createElement('li');
         li.id = task.id;
-        li.classList.add('taskLi');
+        task.done ? li.classList.add('taskComplete') : li.classList.add('taskLi');
         const contentDiv = window.document.createElement('div');
         contentDiv.classList.add('content');
-
+        
         const textP = window.document.createElement('p');
         textP.classList.add('textTask');
         textP.textContent = task.text;
@@ -46,13 +49,18 @@ function renderTasks(arr) {
         buttonRemove.textContent = 'Удалить';
         buttonRemove.addEventListener('click', () => {
             arrayTasks = removeTask(task.id, arrayTasks)
+            saveTasks(arrayTasks)
         })
 
         const buttonDone = window.document.createElement('button')
-        buttonDone.textContent = 'Завершить'
+        task.done ? buttonDone.textContent = 'Отмена' : buttonDone.textContent = 'Завершить'
         buttonDone.classList.add('cancel')
         buttonDone.addEventListener('click', () => {
             arrayTasks.done = doneTask(task.done, task.id, arrayTasks)
+            saveTasks(arrayTasks)
+            li.classList.toggle('taskComplete', task.done);
+            li.classList.toggle('taskLi', !task.done);
+            task.done ? buttonDone.textContent = 'Отмена' : buttonDone.textContent = 'Завершить'
         })
 
         contentDiv.append(textP, buttonRemove, buttonDone)
