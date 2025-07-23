@@ -49,6 +49,8 @@ function renderTasks(arr) {
         buttonRemove.textContent = 'Удалить';
         buttonRemove.addEventListener('click', () => {
             arrayTasks = removeTask(task.id, arrayTasks)
+            document.getElementById(`${task.id}`)?.remove()
+            listOfTasks(arrayTasks)
             saveTasks(arrayTasks)
         })
 
@@ -56,11 +58,13 @@ function renderTasks(arr) {
         task.done ? buttonDone.textContent = 'Отмена' : buttonDone.textContent = 'Завершить'
         buttonDone.classList.add('cancel')
         buttonDone.addEventListener('click', () => {
-            arrayTasks.done = doneTask(task.done, task.id, arrayTasks)
+            let taskIndex = arrayTasks.findIndex(e => e.id === task.id)
+            let updateTask = doneTask(arrayTasks[taskIndex])
+            arrayTasks[taskIndex] = updateTask
             saveTasks(arrayTasks)
-            li.classList.toggle('taskComplete', task.done);
-            li.classList.toggle('taskLi', !task.done);
-            task.done ? buttonDone.textContent = 'Отмена' : buttonDone.textContent = 'Завершить'
+            li.classList.toggle('taskComplete', updateTask.done);
+            li.classList.toggle('taskLi', !updateTask.done);
+            updateTask.done ? buttonDone.textContent = 'Отмена' : buttonDone.textContent = 'Завершить'
         })
 
         contentDiv.append(textP, buttonRemove, buttonDone)
